@@ -1,0 +1,53 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.gameboard-container {
+    width: 90vw;
+    background-color: #818cf8;
+}
+
+.gameboard {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, min(100px, 30%));
+    grid-template-rows: repeat(3, 100px);
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.gameboard div.gameboard-box {
+    border: 1px #4b5563 solid;
+}
+
+/* removes top most borders*/
+div.gameboard-box:nth-last-child(n+7) {
+    border-top: none;
+}
+
+/*removes bottom most borders*/
+div.gameboard-box:nth-child(n+7) {
+    border-bottom: none;
+}
+
+/* removes left most borders */
+div.gameboard-box:nth-child(3n+1) {
+    border-left: none;
+}
+
+/* removes right most borders */
+div.gameboard-box:nth-child(3n) {
+    border-right: none;
+}
+

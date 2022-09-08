@@ -27,8 +27,30 @@ let Gameboard = ( function() {
     }
 
 
-    let markBox = (event, player) => {
-        event.target.textContent = player.marker;
+    let markBoxandArray = (event, player) => {
+        //boxNode is the box that user clicked
+        let boxNode = event.target;
+
+        boxNode.textContent = player.marker;
+        gbMarkerArray[boxNode.id] = player.marker;
+
+
+    }
+
+    
+    //returns true of false if player has won
+    let hasPlayerWon = (player) => {
+
+        //check win
+        // for (let i = 0; i<gbMarkerArray.length; i++) {
+
+        //     if(gbMarkerArray[i] === player.marker) {
+        //         markedIndicesStr=  markedIndicesStr.concat(player.marker);
+        //     }
+            
+        // }
+
+        console.log(player.markedIndices);
     }
 
 
@@ -40,10 +62,20 @@ let Gameboard = ( function() {
         //adding eveny listener to each gameboard box
         boxes.forEach(box => {
             box.addEventListener('click', (e) => {
-                markBox(e,currentPlayer);
-                currentPlayer = currentPlayer===oponent1 ? oponent2 : oponent1;
+
+                //furthur steps are only taken if box is not aleady filled. this is checked if the array index assigned to that particular box is already filled or not. if it is filled nothing happens
+                if(gbMarkerArray[e.target.id] === null) {
+                    currentPlayer.markedIndices = currentPlayer.markedIndices.concat(e.target.id);
+                    
+                    markBoxandArray(e,currentPlayer);
+                    hasPlayerWon(currentPlayer);
+                    currentPlayer = currentPlayer===oponent1 ? oponent2 : oponent1;
+                }
             })
         })
+
+
+
     }
 
     return { createGbBoxes, startGame }
@@ -52,8 +84,8 @@ let Gameboard = ( function() {
 
 //a factory function to create a player
 function CreateUserPlayer(name,marker) {
-
-    return { name, marker };
+    markedIndices = '';
+    return { name, marker, markedIndices };
 }
 
 let player1 = CreateUserPlayer('Player 1','X');

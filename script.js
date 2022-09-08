@@ -28,12 +28,16 @@ let Gameboard = ( function() {
     }
 
     
-    let deleteGbBoxesAndArray = () => {
+    let deleteGbBoxesAndArray = (oponent1, oponent2) => {
         let boxes = document.querySelectorAll('.gameboard-box');
         //deleting boxes
         while(gbHTML.lastChild) gbHTML.removeChild(gbHTML.lastChild);
         //retarting array
         gbMarkerArray = [];
+
+        //deleting the marked indices of each player from the previous game
+        oponent1.markedIndices = '';
+        oponent2.markedIndices = '';
     }
 
 
@@ -84,7 +88,10 @@ let Gameboard = ( function() {
                     currentPlayer.markedIndices = currentPlayer.markedIndices.concat(e.target.id);
 
                     markBoxandArray(e,currentPlayer);
-                    if(hasPlayerWon(currentPlayer)) console.log(`${currentPlayer.name} has won`);
+                    if(hasPlayerWon(currentPlayer)) {
+                        console.log(`${currentPlayer.name} has won`);
+                        return;
+                    } 
                     currentPlayer = currentPlayer===oponent1 ? oponent2 : oponent1;
                 }
             })
@@ -94,7 +101,7 @@ let Gameboard = ( function() {
 
     }
 
-    return { createGbBoxes, startGame }
+    return { createGbBoxes, startGame, deleteGbBoxesAndArray }
 })();
 
 
@@ -112,8 +119,11 @@ Gameboard.createGbBoxes();
 Gameboard.startGame(player1, player2);
 
 
-
-
-
-
-
+//refernce to restart button
+let restartButton = document.querySelector('.restart-button');
+//adding event listener to restart the game
+restartButton.addEventListener('click', () => {
+    Gameboard.deleteGbBoxesAndArray(player1, player2);
+    Gameboard.createGbBoxes();
+    Gameboard.startGame(player1, player2);
+});

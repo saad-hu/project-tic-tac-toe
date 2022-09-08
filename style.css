@@ -84,10 +84,22 @@ div.gameboard-box:nth-child(3n) {
     display: flex;
     width: 100vw;
     justify-content: space-around;
-    padding-top: 10px;
+    padding: 20px 0;
 }
 
 .player-info .player {
     font-size: 28px;
+}
+
+.restart-button {
+    font-size: 20px;
+    background-color: #a855f7;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
+}
+
+.restart-button:hover {
+    background-color: #9f40f8;
 }
 

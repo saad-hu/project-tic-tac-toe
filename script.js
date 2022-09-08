@@ -12,6 +12,7 @@ let gbHTML = document.querySelector('.gameboard');
 //module pattern function. Gameboard is an object created via module pattern function. check return statement at end to see which properties and methods Gameboard object has access to
 let Gameboard = ( function() {
     let gbMarkerArray = []; //private property;
+    let winningCombinations = ['012','345','678','036','147','258','048','246'];
 
     //this function creates gameboard boxes, appends it to the dom inside gbHTML, and fills up the gbMarkerArray with null
     let createGbBoxes = () => {
@@ -38,19 +39,25 @@ let Gameboard = ( function() {
     }
 
     
-    //returns true of false if player has won
+    //returns true if player has one, else returns false
     let hasPlayerWon = (player) => {
+        //looping through each combination in the winning array
+        for(let combination of winningCombinations) {
+            let matchCount = 0;
+            //looping through each combination's character
+            for(let i=0; i<combination.length; i++) {
+                // if the player marked index matches a combination character, count is incremented
+               if ( player.markedIndices.search(combination[i]) != -1) matchCount++;
+            }
 
-        //check win
-        // for (let i = 0; i<gbMarkerArray.length; i++) {
-
-        //     if(gbMarkerArray[i] === player.marker) {
-        //         markedIndicesStr=  markedIndicesStr.concat(player.marker);
-        //     }
-            
-        // }
-
-        console.log(player.markedIndices);
+            // if matchCount is equals to three, this means that player has a winning combination, hence they have one the game
+            if(matchCount === 3) {
+                return true;
+                break;
+            }
+        }
+        //player has not won
+        return false;
     }
 
 
@@ -66,9 +73,9 @@ let Gameboard = ( function() {
                 //furthur steps are only taken if box is not aleady filled. this is checked if the array index assigned to that particular box is already filled or not. if it is filled nothing happens
                 if(gbMarkerArray[e.target.id] === null) {
                     currentPlayer.markedIndices = currentPlayer.markedIndices.concat(e.target.id);
-                    
+
                     markBoxandArray(e,currentPlayer);
-                    hasPlayerWon(currentPlayer);
+                    if(hasPlayerWon(currentPlayer)) console.log(`${currentPlayer.name} has won`);
                     currentPlayer = currentPlayer===oponent1 ? oponent2 : oponent1;
                 }
             })

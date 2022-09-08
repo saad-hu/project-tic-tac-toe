@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+@font-face {
+    font-family: poppins;
+    src: url(./fonts/Poppins-Medium.ttf);
+}
+
 html {
     box-sizing: border-box;
+    font-family: poppins;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -7,15 +15,26 @@ html {
     margin: 0;
 }
 
+header .heading {
+    width: 100vw;
+    background-color: #99f6e4;
+    border-bottom: 4px solid #134e4a;
+    font-family: 'Pacifico', cursive;
+    font-size: 45px;
+    text-align: center;
+    color: #1e3a8a;
+}
 
 main {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
 }
 
 .gameboard-container {
     width: 90vw;
-    background-color: #818cf8;
+    background-color: #a855f7;
 }
 
 .gameboard {
@@ -28,7 +47,17 @@ main {
 }
 
 .gameboard div.gameboard-box {
+    font-size: 50px;
+    color: white;
     border: 1px #4b5563 solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameboard-box:hover {
+    box-shadow: 3px 3px 20px gray inset;
+
 }
 
 /* removes top most borders*/
@@ -49,5 +78,16 @@ div.gameboard-box:nth-child(3n+1) {
 /* removes right most borders */
 div.gameboard-box:nth-child(3n) {
     border-right: none;
+}
+
+.player-info {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+.player-info .player {
+    font-size: 28px;
 }
 

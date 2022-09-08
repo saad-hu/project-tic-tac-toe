@@ -27,6 +27,15 @@ let Gameboard = ( function() {
         }
     }
 
+    
+    let deleteGbBoxesAndArray = () => {
+        let boxes = document.querySelectorAll('.gameboard-box');
+        //deleting boxes
+        while(gbHTML.lastChild) gbHTML.removeChild(gbHTML.lastChild);
+        //retarting array
+        gbMarkerArray = [];
+    }
+
 
     let markBoxandArray = (event, player) => {
         //boxNode is the box that user clicked

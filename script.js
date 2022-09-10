@@ -46,7 +46,6 @@ let Gameboard = ( function() {
 
     let restartGame = (oponent1,oponent2) => {
         deleteGbBoxesAndArray(oponent1,oponent2);
-        createGbBoxes();
         startGame(oponent1,oponent2);
     }
 
@@ -101,6 +100,8 @@ let Gameboard = ( function() {
 
     let startGame = (oponent1, oponent2) => {
 
+        createGbBoxes();
+
         let currentPlayer = oponent1;
         let boxes = document.querySelectorAll('.gameboard-box');
 
@@ -126,7 +127,7 @@ let Gameboard = ( function() {
 
     }
 
-    return { createGbBoxes, startGame, deleteGbBoxesAndArray, restartGame }
+    return { startGame, restartGame }
 })();
 
 
@@ -140,7 +141,6 @@ let player1 = CreateUserPlayer('Player 1','X');
 let player2 = CreateUserPlayer('Player 2', 'O');
 
 
-Gameboard.createGbBoxes();
 Gameboard.startGame(player1, player2);
 
 

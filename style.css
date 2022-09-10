@@ -81,14 +81,14 @@ div.gameboard-box:nth-child(3n) {
     border-right: none;
 }
 
-.player-info {
+.player-info-display {
     display: flex;
     width: 100vw;
     justify-content: space-around;
     padding: 20px 0;
 }
 
-.player-info .player {
+.player-info-display .player {
     font-size: 28px;
 }
 

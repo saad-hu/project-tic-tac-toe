@@ -1,10 +1,3 @@
-//create a module pattern named Gameboard. it should have an array of the gameboard's boxes. add methods that:
-// takes input of the position the player has clicked to mark
-// 1) fill up the array with the player's assigned markers
-// 2) check if the array has markers such that a player has won
-// 3) restart the whole object on play again
-
-
 //refernce to the gameboard container
 let gbHTML = document.querySelector('.gameboard');
 
@@ -56,8 +49,6 @@ let Gameboard = ( function() {
 
         boxNode.textContent = player.marker;
         gbMarkerArray[boxNode.id] = player.marker;
-
-
     }
 
     
@@ -139,22 +130,9 @@ function CreateUserPlayer(name,marker) {
 }
 
 
-
-//refernce to restart button
-let restartButton = document.querySelector('.restart-button');
-//adding event listener to restart the game
-restartButton.addEventListener('click', () => {
-    Gameboard.restartGame(player1,player2);
-});
-
-
-// let player1 = CreateUserPlayer('Player 1','X');
-// let player2 = CreateUserPlayer('Player 2', 'O');
-
+//creating empty player variables because these need to be global
 let player1;
 let player2;
-
-
 
 
 
@@ -169,8 +147,7 @@ let player1Marker = document.querySelector('input[name="player1-marker"]:checked
 let player2Name = document.querySelector('#player2-name');
 let player2Marker = document.querySelector('input[name="player2-marker"]:checked');
 
-
-
+//adding submit event listener to form. after submit two player objects will be created
 let playerInfoForm = document.querySelector('.player-info-form');
 
 playerInfoForm.addEventListener('submit', (event) => {
@@ -183,7 +160,32 @@ playerInfoForm.addEventListener('submit', (event) => {
     playerInfoModal.style['display'] = 'none';
 
     Gameboard.startGame(player1, player2);
+
+    displayNamesAndMarkers();
 });
 
 
 
+//refernce to restart button
+let restartButton = document.querySelector('.restart-button');
+//adding event listener to restart the game
+restartButton.addEventListener('click', () => {
+    Gameboard.restartGame(player1,player2);
+});
+
+
+
+
+// for player info display
+let playersInfoDisplay = document.querySelector('.player-info-display');
+
+let player1DisplayName = document.querySelector('.player1-name');
+let player2DisplayName = document.querySelector('.player2-name');
+
+let player1DisplayNMarker = document.querySelector('.player1-marker');
+let player2DisplayNMarker = document.querySelector('.player2-marker');
+
+
+function displayNamesAndMarkers() {
+    //todo
+}

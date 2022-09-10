@@ -8,6 +8,10 @@
 //refernce to the gameboard container
 let gbHTML = document.querySelector('.gameboard');
 
+//modal for displaying winning player
+let winningModal = document.querySelector('.game-winner-modal');
+let winnerName = document.querySelector('.winner-name');
+
 
 //module pattern function. Gameboard is an object created via module pattern function. check return statement at end to see which properties and methods Gameboard object has access to
 let Gameboard = ( function() {
@@ -38,6 +42,12 @@ let Gameboard = ( function() {
         //deleting the marked indices of each player from the previous game
         oponent1.markedIndices = '';
         oponent2.markedIndices = '';
+    }
+
+    let restartGame = (oponent1,oponent2) => {
+        deleteGbBoxesAndArray(oponent1,oponent2);
+        createGbBoxes();
+        startGame(oponent1,oponent2);
     }
 
 
@@ -73,6 +83,21 @@ let Gameboard = ( function() {
         return false;
     }
 
+    let displayWinner = (winner) => {
+        //winnerName and winningModal are refernce to html modal elements created at the start of the script
+        winnerName.textContent = winner.name;
+        winningModal.style['display'] = 'flex';
+    }
+
+    let closeWinningModalAndRestart = (oponent1,oponent2) => {
+
+        winningModal.addEventListener('click', () => {
+            winningModal.style['display'] = 'none';
+            restartGame(oponent1,oponent2);
+        });
+
+    }
+
 
     let startGame = (oponent1, oponent2) => {
 
@@ -89,19 +114,19 @@ let Gameboard = ( function() {
 
                     markBoxandArray(e,currentPlayer);
                     if(hasPlayerWon(currentPlayer)) {
-                        console.log(`${currentPlayer.name} has won`);
-                        return;
+                        displayWinner(currentPlayer);
+                        closeWinningModalAndRestart(oponent1,oponent2);
                     } 
                     currentPlayer = currentPlayer===oponent1 ? oponent2 : oponent1;
                 }
             })
-        })
+        });
 
 
 
     }
 
-    return { createGbBoxes, startGame, deleteGbBoxesAndArray }
+    return { createGbBoxes, startGame, deleteGbBoxesAndArray, restartGame }
 })();
 
 
@@ -123,7 +148,8 @@ Gameboard.startGame(player1, player2);
 let restartButton = document.querySelector('.restart-button');
 //adding event listener to restart the game
 restartButton.addEventListener('click', () => {
-    Gameboard.deleteGbBoxesAndArray(player1, player2);
-    Gameboard.createGbBoxes();
-    Gameboard.startGame(player1, player2);
+    Gameboard.restartGame(player1,player2);
 });
+
+
+

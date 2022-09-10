@@ -138,11 +138,6 @@ function CreateUserPlayer(name,marker) {
     return { name, marker, markedIndices };
 }
 
-let player1 = CreateUserPlayer('Player 1','X');
-let player2 = CreateUserPlayer('Player 2', 'O');
-
-
-Gameboard.startGame(player1, player2);
 
 
 //refernce to restart button
@@ -150,6 +145,44 @@ let restartButton = document.querySelector('.restart-button');
 //adding event listener to restart the game
 restartButton.addEventListener('click', () => {
     Gameboard.restartGame(player1,player2);
+});
+
+
+// let player1 = CreateUserPlayer('Player 1','X');
+// let player2 = CreateUserPlayer('Player 2', 'O');
+
+let player1;
+let player2;
+
+
+
+
+
+//player info form portion
+
+let playerInfoModal = document.querySelector('.player-info-modal');
+
+// refernce to all form inputs
+let player1Name = document.querySelector('#player1-name');
+let player1Marker = document.querySelector('input[name="player1-marker"]:checked');
+
+let player2Name = document.querySelector('#player2-name');
+let player2Marker = document.querySelector('input[name="player2-marker"]:checked');
+
+
+
+let playerInfoForm = document.querySelector('.player-info-form');
+
+playerInfoForm.addEventListener('submit', (event) => {
+
+    player1 = CreateUserPlayer(player1Name.value, player1Marker.value);
+
+    player2 = CreateUserPlayer(player2Name.value, player2Marker.value);
+    event.preventDefault();
+
+    playerInfoModal.style['display'] = 'none';
+
+    Gameboard.startGame(player1, player2);
 });
 
 

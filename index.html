@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,19 +9,22 @@
     <script src="script.js" defer></script>
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
     <header>
         <div class="heading">Tic Tac Toe</div>
     </header>
-    
+
     <main>
         <div class="gameboard-container">
             <div class="gameboard"></div>
         </div>
 
         <div class="player-info">
-            <div class="player1 player"><span class="player1-name">Player 1</span>: <span class="player1-marker">X</span></div>
-            <div class="player2 player"><span class="player2-name">Player 2</span>: <span class="player1-marker">O</span></div>
+            <div class="player1 player"><span class="player1-name">Player 1</span>: <span
+                    class="player1-marker">X</span></div>
+            <div class="player2 player"><span class="player2-name">Player 2</span>: <span
+                    class="player1-marker">O</span></div>
         </div>
 
         <div class="restart-but-container">
@@ -34,5 +38,39 @@
         <div class="display-winner-text"><span class="winner-name"></span> has won!</div>
     </div>
 
+    <div class="player-info-modal">
+
+        <form class="player-info-form">
+            <!-- player 1 -->
+            <div class="player1-container player-info-card">
+                <input type="text" id="player1-name" value="Player 1" maxlength="9">
+
+                <div class="radio-container">
+                    <input type="radio" name="player1-marker" value="X" class="X-radio" checked required>
+                    <input type="radio" name="player1-marker" value="O" class="O-radio">
+                </div>
+            </div>
+
+            <!-- player 2 -->
+            <div class="player2-container player-info-card">
+                <input type="text" id="player2-name" value="Player 2" maxlength="9">
+
+                <div class="radio-container">
+                    <input type="radio" name="player2-marker" value="X" class="X-radio">
+                    <input type="radio" name="player2-marker" value="O" class="O-radio" checked required>
+                </div>
+            </div>
+
+            <div class="form-button-container">
+                <button type="submit" id="submit-button">Play</button>
+            </div>
+        
+        </form>
+
+    </div>
+
+
+
 </body>
+
 </html>

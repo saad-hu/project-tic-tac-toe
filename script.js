@@ -117,6 +117,7 @@ let Gameboard = ( function() {
                     if(hasPlayerWon(currentPlayer)) {
                         displayWinner(currentPlayer);
                         closeWinningModalAndRestart(oponent1,oponent2);
+                        return;
                     } 
                     currentPlayer = currentPlayer===oponent1 ? oponent2 : oponent1;
                 }

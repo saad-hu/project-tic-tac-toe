@@ -17,12 +17,12 @@ html {
 
 header .heading {
     width: 100vw;
-    background-color: #99f6e4;
-    border-bottom: 4px solid #134e4a;
+    background-color: rgb(100, 100, 100);  /*#99f6e4*/
+    border-bottom: 4px solid black;
     font-family: 'Pacifico', cursive;
     font-size: 45px;
     text-align: center;
-    color: #1e3a8a;
+    color: rgb(255, 255, 255); /* #1e3a8a */
 }
 
 main {
@@ -30,6 +30,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
+    position: relative;
 }
 
 .gameboard-container {

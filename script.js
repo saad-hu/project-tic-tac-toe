@@ -40,6 +40,7 @@ let Gameboard = ( function() {
     let restartGame = (oponent1,oponent2) => {
         deleteGbBoxesAndArray(oponent1,oponent2);
         startGame(oponent1,oponent2);
+        restartHighlightPlayer()
     }
 
 
@@ -111,12 +112,10 @@ let Gameboard = ( function() {
                         return;
                     } 
                     currentPlayer = currentPlayer===oponent1 ? oponent2 : oponent1;
+                    toggleHighlightPlayer();
                 }
-            })
+            });
         });
-
-
-
     }
 
     return { startGame, restartGame }
@@ -155,13 +154,9 @@ playerInfoForm.addEventListener('submit', (event) => {
     let player2Marker = document.querySelector('input[name="player2-marker"]:checked');
 
     player1 = CreateUserPlayer(player1Name.value, player1Marker.value);
-    console.log(player1Marker.value);
 
     player2 = CreateUserPlayer(player2Name.value, player2Marker.value);
-    console.log(player2Marker.value);
 
-    console.log(player1);
-    console.log(player2);
 
     playerInfoModal.style['display'] = 'none';
     displayNamesAndMarkers();
@@ -182,7 +177,7 @@ restartButton.addEventListener('click', () => {
 
 
 // for player info display while playing
-let playersInfoDisplay = document.querySelector('.player-info-display');
+// let playersInfoDisplay = document.querySelector('.player-info-display');
 
 let player1DisplayName = document.querySelector('.player1-display-name');
 let player2DisplayName = document.querySelector('.player2-display-name');
@@ -197,4 +192,20 @@ function displayNamesAndMarkers() {
 
     player2DisplayName.textContent = player2.name;
     player2DisplayMarker.textContent = player2.marker;
+}
+
+//reference to each player's diplay container
+let individualPlayerDisplay = document.querySelectorAll('.player');
+
+//this function highlights the current player and removes highlight from previous player. this is done via toggling the active class, on which the highlight css is applied. This function is called in the startGame method in the GameBoard module pattern.  
+function toggleHighlightPlayer() {
+
+    individualPlayerDisplay.forEach(playerDisplayNode => {
+        playerDisplayNode.classList.toggle('active');
+    })
+};
+
+function restartHighlightPlayer() {
+    document.querySelector('.player-info-display > .player1').classList.add('active');
+    document.querySelector('.player-info-display > .player2').classList.remove('active');
 }

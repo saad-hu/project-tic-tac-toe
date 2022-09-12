@@ -17,12 +17,12 @@ html {
 
 header .heading {
     width: 100vw;
-    background-color: rgb(100, 100, 100);  /*#99f6e4*/
+    background-color: rgb(100, 100, 100);
     border-bottom: 4px solid black;
     font-family: 'Pacifico', cursive;
     font-size: 45px;
     text-align: center;
-    color: rgb(255, 255, 255); /* #1e3a8a */
+    color: rgb(255, 255, 255);
 }
 
 main {
@@ -230,5 +230,17 @@ input[type='radio'].O-radio::before {
 }
 
 
+/* player infoo section */
+
+.player {
+    padding: 10px 20px;
+}
+
+.player.active {
+    color: white;
+    background-color: rgb(100, 100, 100);;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px black;
+}
 
 

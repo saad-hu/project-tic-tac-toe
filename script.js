@@ -1,10 +1,8 @@
 //refernce to the gameboard container
 let gbHTML = document.querySelector('.gameboard');
-
-//modal for displaying winning player
+//reference to modal for displaying winning player
 let winningModal = document.querySelector('.game-winner-modal');
 let winnerName = document.querySelector('.winner-name');
-
 
 //module pattern function. Gameboard is an object created via module pattern function. check return statement at end to see which properties and methods Gameboard object has access to
 let Gameboard = ( function() {
@@ -18,13 +16,12 @@ let Gameboard = ( function() {
             box.classList.add('gameboard-box');
             box.id = i;
 
-
             gbHTML.appendChild(box);
             gbMarkerArray.push(null);
         }
     }
 
-    
+    //this function deletes the gameboard and markerArray. Also it clears the marked indices in the each player objects. So this function deletes all the data
     let deleteGbBoxesAndArray = (oponent1, oponent2) => {
         let boxes = document.querySelectorAll('.gameboard-box');
         //deleting boxes
@@ -37,13 +34,14 @@ let Gameboard = ( function() {
         oponent2.markedIndices = '';
     }
 
+    //this function restarts the whole game
     let restartGame = (oponent1,oponent2) => {
         deleteGbBoxesAndArray(oponent1,oponent2);
         startGame(oponent1,oponent2);
-        restartHighlightPlayer()
+        restartHighlightPlayer(); //defined outside this IIFE
     }
 
-
+        //this function marks boxes in the DOM. The player object is taken as an input. The player's marker will mark the box. This function also marks the array at the appropriate index
     let markBoxandArray = (event, player) => {
         //boxNode is the box that user clicked
         let boxNode = event.target;
@@ -52,8 +50,7 @@ let Gameboard = ( function() {
         gbMarkerArray[boxNode.id] = player.marker;
     }
 
-    
-    //returns true if player has one, else returns false
+    //returns true if player taken as input has one, else returns false
     let hasPlayerWon = (player) => {
         //looping through each combination in the winning array
         for(let combination of winningCombinations) {
@@ -74,6 +71,7 @@ let Gameboard = ( function() {
         return false;
     }
 
+    //displays the name of the winner in the modal created
     let displayWinner = (winner) => {
         //winnerName and winningModal are refernce to html modal elements created at the start of the script
         winnerName.textContent = winner.name;
@@ -81,17 +79,13 @@ let Gameboard = ( function() {
     }
 
     let closeWinningModalAndRestart = (oponent1,oponent2) => {
-
         winningModal.addEventListener('click', () => {
             winningModal.style['display'] = 'none';
             restartGame(oponent1,oponent2);
         });
-
     }
 
-
     let startGame = (oponent1, oponent2) => {
-
         createGbBoxes();
 
         let currentPlayer = oponent1;
@@ -100,7 +94,6 @@ let Gameboard = ( function() {
         //adding eveny listener to each gameboard box
         boxes.forEach(box => {
             box.addEventListener('click', (e) => {
-
                 //furthur steps are only taken if box is not aleady filled. this is checked if the array index assigned to that particular box is already filled or not. if it is filled nothing happens
                 if(gbMarkerArray[e.target.id] === null) {
                     currentPlayer.markedIndices = currentPlayer.markedIndices.concat(e.target.id);
@@ -118,28 +111,23 @@ let Gameboard = ( function() {
         });
     }
 
-    return { startGame, restartGame }
+    return { startGame, restartGame }; //only startGame and restartGame methods are returned.
 })();
 
 
-//a factory function to create a player
+//factory function to create a player
 function CreateUserPlayer(name,marker) {
     markedIndices = '';
     return { name, marker, markedIndices };
 }
-
 
 //creating empty player variables because these need to be global
 let player1;
 let player2;
 
 
-
 //player info form portion
-
 let playerInfoModal = document.querySelector('.player-info-modal');
-
-
 //adding submit event listener to form. after submit two player objects will be created
 let playerInfoForm = document.querySelector('.player-info-form');
 
@@ -166,19 +154,8 @@ playerInfoForm.addEventListener('submit', (event) => {
 
 
 
-//refernce to restart button
-let restartButton = document.querySelector('.restart-button');
-//adding event listener to restart the game
-restartButton.addEventListener('click', () => {
-    Gameboard.restartGame(player1,player2);
-});
-
-
-
-
 // for player info display while playing
 // let playersInfoDisplay = document.querySelector('.player-info-display');
-
 let player1DisplayName = document.querySelector('.player1-display-name');
 let player2DisplayName = document.querySelector('.player2-display-name');
 
@@ -209,3 +186,11 @@ function restartHighlightPlayer() {
     document.querySelector('.player-info-display > .player1').classList.add('active');
     document.querySelector('.player-info-display > .player2').classList.remove('active');
 }
+
+
+//refernce to restart button
+let restartButton = document.querySelector('.restart-button');
+//adding event listener to restart the game
+restartButton.addEventListener('click', () => {
+    Gameboard.restartGame(player1,player2);
+});

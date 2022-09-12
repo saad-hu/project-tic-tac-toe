@@ -140,21 +140,25 @@ let player2;
 
 let playerInfoModal = document.querySelector('.player-info-modal');
 
-// refernce to all form inputs
-let player1Name = document.querySelector('#player1-name');
-let player1Marker = document.querySelector('input[name="player1-marker"]:checked');
-
-let player2Name = document.querySelector('#player2-name');
-let player2Marker = document.querySelector('input[name="player2-marker"]:checked');
 
 //adding submit event listener to form. after submit two player objects will be created
 let playerInfoForm = document.querySelector('.player-info-form');
 
 playerInfoForm.addEventListener('submit', (event) => {
 
+    // refernce to all form inputs
+    let player1Name = document.querySelector('#player1-name');
+    let player1Marker = document.querySelector('input[name="player1-marker"]:checked');
+
+    let player2Name = document.querySelector('#player2-name');
+    let player2Marker = document.querySelector('input[name="player2-marker"]:checked');
+
     player1 = CreateUserPlayer(player1Name.value, player1Marker.value);
+    console.log(player1Marker.value);
 
     player2 = CreateUserPlayer(player2Name.value, player2Marker.value);
+    console.log(player2Marker.value);
+
     event.preventDefault();
 
     playerInfoModal.style['display'] = 'none';

@@ -54,6 +54,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .gameboard-box:hover {
@@ -151,10 +152,10 @@ div.gameboard-box:nth-child(3n) {
 }
 
 .player-info-card {
-    background-image: linear-gradient(#93c5fd, #e0f2fe);
-    
+    background-color: white;
+    box-shadow: 4px 4px 20px rgb(112, 112, 112) inset;
     width: clamp(250px,30%,350px);
-    padding: 4% 2%;
+    padding: 35px 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;

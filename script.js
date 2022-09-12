@@ -145,6 +145,7 @@ let playerInfoModal = document.querySelector('.player-info-modal');
 let playerInfoForm = document.querySelector('.player-info-form');
 
 playerInfoForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
     // refernce to all form inputs
     let player1Name = document.querySelector('#player1-name');
@@ -159,13 +160,13 @@ playerInfoForm.addEventListener('submit', (event) => {
     player2 = CreateUserPlayer(player2Name.value, player2Marker.value);
     console.log(player2Marker.value);
 
-    event.preventDefault();
+    console.log(player1);
+    console.log(player2);
 
     playerInfoModal.style['display'] = 'none';
+    displayNamesAndMarkers();
 
     Gameboard.startGame(player1, player2);
-
-    displayNamesAndMarkers();
 });
 
 
@@ -180,16 +181,20 @@ restartButton.addEventListener('click', () => {
 
 
 
-// for player info display
+// for player info display while playing
 let playersInfoDisplay = document.querySelector('.player-info-display');
 
-let player1DisplayName = document.querySelector('.player1-name');
-let player2DisplayName = document.querySelector('.player2-name');
+let player1DisplayName = document.querySelector('.player1-display-name');
+let player2DisplayName = document.querySelector('.player2-display-name');
 
-let player1DisplayNMarker = document.querySelector('.player1-marker');
-let player2DisplayNMarker = document.querySelector('.player2-marker');
+let player1DisplayMarker = document.querySelector('.player1-display-marker');
+let player2DisplayMarker = document.querySelector('.player2-display-marker');
 
 
 function displayNamesAndMarkers() {
-    //todo
+    player1DisplayName.textContent = player1.name;
+    player1DisplayMarker.textContent = player1.marker;
+
+    player2DisplayName.textContent = player2.name;
+    player2DisplayMarker.textContent = player2.marker;
 }

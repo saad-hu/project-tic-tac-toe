@@ -6,4 +6,4 @@ This is a multiplayer game of Tic Tac Toe. In this project, I learned how to use
 
 Build using vanilla JavaScript, CSS and HTML.
 
-!(./images/tic-tac-toe.png)
+![image](/images/tic-tac-toe.png)

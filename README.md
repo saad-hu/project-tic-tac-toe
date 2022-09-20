@@ -6,9 +6,11 @@
 ## Screenshots
 ### Desktop Version
 ![image1](/images/tic-tac-toe.png)
+
 ![image2](/images/tic-tac-toe-1.png)
 ### Mobile Version
 ![image3](/images/tic-tac-toe-mob.png)
+
 ![image4](/images/tic-tac-toe-mob-1.png)
 
 ## Description and Outcome

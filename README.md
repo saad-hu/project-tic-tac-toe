@@ -14,6 +14,6 @@
 ![image4](/images/tic-tac-toe-mob-1.png)
 
 ## Description and Outcome
-This is a multiplayer game of Tic Tac Toe. In this project, I learned how to use Module Pattern and Factory Functions. The gameboard is an object, created using Module Pattern. Each player, is a dynamically created object. These player objects are created using a Factory Function when the game is started. 
+This is a multiplayer game of Tic Tac Toe. In this project, I learned how to use Module Pattern and Factory Functions. The gameboard is an object, created using Module Pattern. Each player, is a dynamically created object. These player objects are created using a Factory Function after the players enter their info and start the game.
 
 Build using vanilla JavaScript, CSS and HTML.
